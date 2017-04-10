@@ -12,7 +12,7 @@ describe('Entries Component', () => {
   })
 
   it('should render without crashing', () => {
-    const wrapper = entries;
+    expect(entries.exists()).toBe(true);
   });
 
   it('Entries renders nested components', () => {

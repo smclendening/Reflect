@@ -11,7 +11,7 @@ describe('Entry Component', () => {
   })
 
   it('should render without crashing', () => {
-    const wrapper = entry;
+    expect(entry.exists()).toBe(true);
   });
 
   it('Entry renders a div', () => {

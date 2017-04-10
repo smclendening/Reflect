@@ -8,10 +8,10 @@ describe('App Component', () => {
 
   beforeEach(() => {
     app = shallow(<App />);
-  })
+  });
 
   it('should render without crashing', () => {
-    const wrapper = app;
+    expect(app.exists()).toBe(true);
   });
 
   it('App renders nested components', () => {

@@ -12,7 +12,7 @@ describe('Timeline Component', () => {
   })
 
   it('should render without crashing', () => {
-    const wrapper = timeline;
+    expect(timeline.exists()).toBe(true);
   });
 
   it('should render a sidebar', () => {
