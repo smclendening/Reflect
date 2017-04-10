@@ -1,15 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default (props) => (
+const Timeline = ({months}) => (
   <div className="four wide column">
     <div className="ui left vertical inverted sidebar menu visible">
       <div className="item header">2017</div>
-      {Object.keys(props.months).map(month => 
-        <a className="item month">
+      {Object.keys(months).map(month => 
+        <a className="item month" key={Math.random()}>
           {month}
-          <div className="ui label">{props.months[month].length}</div>
+          <div className="ui label" key={Math.random()}>{months[month].length}</div>
         </a>
       )}
     </div>
   </div>
 )
+
+Timeline.propTypes = {
+  months: PropTypes.object.isRequired
+}
+
+export default Timeline;
