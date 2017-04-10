@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default (props) => (
+const Entry = ({date, text}) => (
   <div className="ui piled container segment">
-    <h4 className="ui header">{props.date}</h4>
-    <p>{props.text}</p>
+    <h4 className="ui header">{date}</h4>
+    <p>{text}</p>
   </div>
 )
 
+Entry.propTypes = {
+  date: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
+}
+
+export default Entry;

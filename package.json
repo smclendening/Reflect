@@ -24,6 +24,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "history": "^4.6.1",
+    "prop-types": "^15.5.6",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
@@ -64,7 +65,12 @@
     ]
   },
   "jest": {
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules"]
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }

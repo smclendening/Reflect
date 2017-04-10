@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Entry from './Entry.jsx';
 
 export default class Entries extends Component {
@@ -24,4 +25,8 @@ export default class Entries extends Component {
       </div>
     )
   }
+}
+
+Entries.propTypes = {
+  entries: PropTypes.array.isRequired
 }
