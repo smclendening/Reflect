@@ -11,12 +11,12 @@ describe('Calling API tests', () => {
  	//	app = require('../../../server/server.js');
 	});
 
-	afterEach((done) => {
+	afterEach(() => {
 		//app.close(done);
 	//	delete process.env.NODE_ENV;
 	});
 
-	it('should run a test', (done) => {
+	it('should run a test', () => {
 			// return request(app)
 			// .get('/api/calling/call')
 			// .end((req, res) => {
