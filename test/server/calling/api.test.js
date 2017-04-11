@@ -12,7 +12,7 @@ describe('Calling API tests', () => {
 	});
 
 	afterEach((done) => {
-		app.close(done);
+		//app.close(done);
 	//	delete process.env.NODE_ENV;
 	});
 
