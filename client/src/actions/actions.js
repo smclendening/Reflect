@@ -2,6 +2,7 @@
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
 export const REQUEST_ENTRIES = 'REQUEST_ENTRIES';
+export const SET_DISPLAY_MONTH = 'SET_DISPLAY_MONTH';
 
 // User Actions
 export const USER_SUBMIT_EMAIL = 'USER_SUBMIT_EMAIL';
@@ -55,6 +56,13 @@ function requestEntries() {
   return {
     type: REQUEST_ENTRIES,
     isFetching: true
+  }
+}
+
+export function setDisplayMonth(month) {
+  return {
+    type: SET_DISPLAY_MONTH,
+    month: month
   }
 }
 
