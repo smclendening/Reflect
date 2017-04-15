@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchEntries } from '../actions/actions.js';
+import { fetchEntries, setDisplayMonth } from '../actions/actions.js';
 import { connect } from 'react-redux';
 import Nav from './Nav.jsx';
 import Entries from './Entries.jsx';
@@ -11,18 +11,23 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    this.onMonthClick = this.onMonthClick.bind(this);
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchEntries());
+    this.props.fetchEntries();
+  }
+
+  onMonthClick(month) {
+    this.props.setDisplayMonth(month);
   }
 
   render() {
     return (
       <div>
         <div className="ui three column grid">
-          <Timeline months={dummyTimelineData}/>
+          <Timeline months={dummyTimelineData} onMonthClick={this.onMonthClick}/>
           <Entries entries={dummyEntryData}/>
           <CallMeNow />
         </div>
@@ -37,5 +42,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchEntries: () => dispatch(fetchEntries()),
+    setDisplayMonth: (month) => dispatch(setDisplayMonth(month))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
