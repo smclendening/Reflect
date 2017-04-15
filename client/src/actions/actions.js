@@ -34,19 +34,26 @@ export const CALL_SENT = 'CALL_SENT';
 import { push } from 'react-router-redux';
 
 export function fetchEntries() {
+  let config = {
+    method: 'GET',
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('id_token')
+    }
+  };
+
   return dispatch => {
     dispatch(requestEntries());
-    return fetch('/api/entries')
-    // assuming that response is JSON
-      .then(response => dispatch(receiveEntries(response)))
-      .catch(error => console.error(error));
+    return fetch('/api/entries', config)
+      .then(response => response.json())
+      .then(results => dispatch(receiveEntries(results.entries)))
+      .catch(error => console.error(error))
   }
 }
 
 function receiveEntries(entries) {
   return {
     type: RECEIVE_ENTRIES,
-    entries: JSON.parse(entries),
+    entries: entries,
     receivedAt: Date.now(),
     isFetching: false
   }
