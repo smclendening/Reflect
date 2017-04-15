@@ -16,7 +16,8 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchEntries();
+    const { fetchEntries, userId } = this.props;
+    fetchEntries(userId);
   }
 
   onMonthClick(month) {
@@ -28,7 +29,7 @@ export class App extends Component {
       <div>
         <div className="ui three column grid">
           <Timeline months={dummyTimelineData} onMonthClick={this.onMonthClick}/>
-          <Entries entries={dummyEntryData}/>
+          <Entries entries={this.props.entries}/>
           <CallMeNow />
         </div>
       </div>
@@ -38,7 +39,8 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    userId: state.user.id,
+    entries: state.entries.entries
   }
 }
 
