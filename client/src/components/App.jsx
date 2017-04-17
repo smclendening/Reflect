@@ -25,11 +25,13 @@ export class App extends Component {
   }
 
   render() {
+    const { entries, months } = this.props;
+
     return (
       <div>
         <div className="ui three column grid">
-          <Timeline months={dummyTimelineData} onMonthClick={this.onMonthClick}/>
-          <Entries entries={this.props.entries}/>
+          <Timeline months={months} onMonthClick={this.onMonthClick}/>
+          <Entries entries={entries}/>
           <CallMeNow />
         </div>
       </div>
@@ -40,7 +42,8 @@ export class App extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.id,
-    entries: state.entries.entries
+    entries: state.entries.displayedEntries,
+    months: state.entries.months
   }
 }
 
