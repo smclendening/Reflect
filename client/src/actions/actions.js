@@ -47,9 +47,9 @@ export function fetchEntries() {
     dispatch(requestEntries());
     return fetch('/api/entries', config)
       .then(response => response.json())
-      .then(results => {
-        const monthData = getMonthData(results.entries)
-        dispatch(receiveEntries(results.entries, monthData))
+      .then(responseJSON => {
+        const monthData = getMonthData(responseJSON.entries)
+        dispatch(receiveEntries(responseJSON.entries, monthData))
       })
       .catch(error => console.error(error))
   }
