@@ -5,7 +5,7 @@ import Timeline from '../../client/src/components/Timeline.jsx';
 
 describe('Timeline Component', () => {
   let timeline;
-  const exampleMonthData = {February: ['entryID', 'entryID'], March: ['entryID']};
+  const exampleMonthData = {'02': ['entryID', 'entryID'], '03': ['entryID']};
 
   beforeEach(() => {
     timeline = mount(<Timeline months={exampleMonthData}/>);
@@ -22,7 +22,7 @@ describe('Timeline Component', () => {
   it('should render each month from given props', () => {
     const months = timeline.find('.month');
 
-    expect(months.first().text()).toContain('February')
+    expect(months.first().text()).toContain('2')
   });
 
   it('should render the number of entries in each given month', () => {
