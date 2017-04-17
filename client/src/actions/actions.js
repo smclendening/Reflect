@@ -1,3 +1,5 @@
+import { getMonthData } from '../utils.js';
+
 // Entries Actions
 export const FETCH_ENTRIES = 'FETCH_ENTRIES';
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
@@ -45,15 +47,19 @@ export function fetchEntries() {
     dispatch(requestEntries());
     return fetch('/api/entries', config)
       .then(response => response.json())
-      .then(results => dispatch(receiveEntries(results.entries)))
+      .then(results => {
+        const monthData = getMonthData(results.entries)
+        dispatch(receiveEntries(results.entries, monthData))
+      })
       .catch(error => console.error(error))
   }
 }
 
-function receiveEntries(entries) {
+function receiveEntries(entries, months) {
   return {
     type: RECEIVE_ENTRIES,
     entries: entries,
+    months: months,
     receivedAt: Date.now(),
     isFetching: false
   }
@@ -240,6 +246,7 @@ export function checkCredentials(credentials) {
       }
     })
     .then(responseJSON => {
+      localStorage.setItem('id_token', responseJSON.token);
       dispatch(loginSuccess(responseJSON.user));
       dispatch(push('/entries'));
     })

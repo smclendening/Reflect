@@ -8,6 +8,7 @@ function entries(state = {
   entries: [],
   displayedMonth: null,
   displayedEntries: [],
+  months: [],
   receivedAt: '',
   isFetching: false
 }, action) {
@@ -16,6 +17,7 @@ function entries(state = {
       return {
         ...state,
         entries: action.entries,
+        months: action.months,
         displayedEntries: action.entries,
         receivedAt: action.receivedAt,
         isFetching: action.isFetching
@@ -29,7 +31,7 @@ function entries(state = {
       return {
         ...state,
         displayedMonth: action.month,
-        displayedEntries: state.entries.filter(entry => entry.month === action.month)
+        displayedEntries: state.entries.filter(entry => entry.created.split('-')[1] === action.month)
       }
   default:
     return state;
