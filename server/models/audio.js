@@ -14,5 +14,5 @@ module.exports.update = (audio_id, column, updatedValue) => {
 }
 
 module.exports.findNotProcessed = () => {
-  return db.oneOrNone('SELECT * FROM audio WHERE is_processed = $1', [false]);
+  return db.manyOrNone('SELECT * FROM audio WHERE is_processed = $1', [false]);
 }
