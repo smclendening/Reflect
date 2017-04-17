@@ -11,7 +11,7 @@ router.use('/entries', Auth.authMiddleware);
 router.get('/entries', (req, res) => {
   const userId = req.user.user_id;
   
-  Entries.findByUserId(1) 
+  Entries.findByUserId(userId) 
   .then(results => {
     res.status(200).send({
       entries: results
