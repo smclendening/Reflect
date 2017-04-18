@@ -1,15 +1,15 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Entries from '../../client/src/components/Entries.jsx';
 
 describe('Entries Component', () => {
   let entries;
-  const exampleEntries = [{date: 'January 1, 2017', text: 'Example entry'}];
+  const exampleEntries = [{ created: 'January 1, 2017', text: 'Example entry', entry_id: 1 }];
 
   beforeEach(() => {
-    entries = shallow(<Entries entries={exampleEntries}/>);
-  })
+    entries = shallow(<Entries entries={exampleEntries} />);
+  });
 
   it('should render without crashing', () => {
     expect(entries.exists()).toBe(true);
@@ -18,6 +18,5 @@ describe('Entries Component', () => {
   it('Entries renders nested components', () => {
     expect(entries.find('Entry')).toBeDefined();
   });
-
-})
+});
 
