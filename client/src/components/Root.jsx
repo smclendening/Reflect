@@ -20,7 +20,6 @@ export class Root extends React.Component {
 
     if (token) {
       dispatchFetchUserInfo(token);
-    }
   }
 
   render() {
