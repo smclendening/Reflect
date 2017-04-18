@@ -15,10 +15,11 @@ import Profile from './Profile.jsx';
 export class Root extends React.Component {
 
   componentDidMount() {
+    const { dispatchFetchUserInfo } = this.props;
     const token = localStorage.getItem('reflective_token');
 
     if (token) {
-      this.props.fetchUserInfo(token);
+      dispatchFetchUserInfo(token);
     }
   }
 
@@ -50,12 +51,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchUserInfo: token => dispatch(fetchUserInfo(token))
+    dispatchFetchUserInfo: token => dispatch(fetchUserInfo(token))
   }
 );
 
 Root.propTypes = {
-  fetchUserInfo: PropTypes.func.isRequired,
+  dispatchFetchUserInfo: PropTypes.func.isRequired,
   store: PropTypes.objectOf(PropTypes.oneOfType(
       [PropTypes.string, PropTypes.array, PropTypes.object]
     )).isRequired,
