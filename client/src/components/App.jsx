@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import { fetchEntries, setDisplayMonth } from '../actions/actions.js';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Nav from './Nav.jsx';
+import PropTypes from 'prop-types';
+import { fetchEntries, setDisplayMonth } from '../actions/actions.js';
 import Entries from './Entries.jsx';
 import Timeline from './Timeline.jsx';
 import CallMeNow from './CallMeNow.jsx';
-import { dummyEntryData, dummyTimelineData } from '../dummyData.js';
 
 export class App extends Component {
   constructor(props) {
@@ -15,12 +14,13 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    const { fetchEntries, userId } = this.props;
-    fetchEntries(userId);
+    const { dispatchGetEntries, userId } = this.props;
+    dispatchGetEntries(userId);
   }
 
   onMonthClick(month) {
-    this.props.setDisplayMonth(month);
+    const { dispatchSetDisplayMonth } = this.props;
+    dispatchSetDisplayMonth(month);
   }
 
   render() {
@@ -29,28 +29,42 @@ export class App extends Component {
     return (
       <div>
         <div className="ui three column grid">
-          <Timeline months={months} onMonthClick={this.onMonthClick}/>
-          <Entries entries={entries}/>
+          <Timeline months={months} onMonthClick={this.onMonthClick} />
+          <Entries entries={entries} />
           <CallMeNow />
         </div>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = state => (
+  {
     userId: state.user.id,
     entries: state.entries.displayedEntries,
     months: state.entries.months
   }
-}
+);
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchEntries: () => dispatch(fetchEntries()),
-    setDisplayMonth: (month) => dispatch(setDisplayMonth(month))
-  };
+const mapDispatchToProps = dispatch => (
+  {
+    dispatchGetEntries: () => dispatch(fetchEntries()),
+    dispatchSetDisplayMonth: month => dispatch(setDisplayMonth(month))
+  }
+);
+
+App.propTypes = {
+  dispatchGetEntries: PropTypes.func.isRequired,
+  dispatchSetDisplayMonth: PropTypes.func.isRequired,
+  userId: PropTypes.number,
+  entries: PropTypes.arrayOf(PropTypes.object),
+  months: PropTypes.objectOf(PropTypes.array)
+};
+
+App.defaultProps = {
+  userId: null,
+  entries: [],
+  months: {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

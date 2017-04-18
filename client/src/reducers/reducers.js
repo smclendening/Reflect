@@ -8,7 +8,7 @@ function entries(state = {
   entries: [],
   displayedMonth: null,
   displayedEntries: [],
-  months: [],
+  months: {},
   receivedAt: '',
   isFetching: false
 }, action) {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Entry from './Entry.jsx';
 
@@ -10,23 +9,25 @@ export default class Entries extends Component {
   }
 
   render() {
-
     const { entries } = this.props;
-    
     return (
       <div className="eight wide column">
-        {entries.map(entry => 
-          <Entry 
-            date={entry.created} 
-            text={entry.text} 
+        {entries.map(entry =>
+          <Entry
+            date={entry.created}
+            text={entry.text}
             key={entry.entry_id}
           />
         )}
       </div>
-    )
+    );
   }
 }
 
 Entries.propTypes = {
-  entries: PropTypes.array.isRequired
-}
+  entries: PropTypes.arrayOf(PropTypes.object)
+};
+
+Entries.defaultProps = {
+  entries: []
+};

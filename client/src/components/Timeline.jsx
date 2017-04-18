@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { monthToEnglish } from '../utils.js';
 
-const Timeline = ({months, onMonthClick}) => (
+const Timeline = ({ months, onMonthClick }) => (
   <div className="four wide column">
-    <div className="ui left vertical inverted sidebar menu visible" style={{"top":"42"}}>
+    <div className="ui left vertical inverted sidebar menu visible" style={{ top: 42 }}>
       <div className="item header">2017</div>
-      {Object.keys(months).map(month => 
+      {Object.keys(months).map(month =>
         <a className="item month" key={Math.random()} onClick={() => onMonthClick(month)}>
           {monthToEnglish[month]}
           <div className="ui label" key={Math.random()}>{months[month].length}</div>
@@ -14,10 +14,15 @@ const Timeline = ({months, onMonthClick}) => (
       )}
     </div>
   </div>
-)
+);
 
 Timeline.propTypes = {
-  months: PropTypes.object.isRequired
-}
+  months: PropTypes.objectOf(PropTypes.array),
+  onMonthClick: PropTypes.func.isRequired
+};
+
+Timeline.defaultProps = {
+  months: {}
+};
 
 export default Timeline;
