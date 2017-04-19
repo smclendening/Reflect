@@ -15,7 +15,8 @@ const createEntryFromText = (watsonResponse) => {
   watsonResponse.results.forEach((result) => {
     entry += `${result.alternatives[0].transcript}. `;
   });
-  return entry;
+
+  return entry.replace(/%HESITATION/g, '...');
 };
 
 module.exports = (audioId, filePath, entryId) => {
@@ -23,7 +24,8 @@ module.exports = (audioId, filePath, entryId) => {
     // TODO: Change file to correct filePath depending on where files are stored
     audio: fs.createReadStream(path.resolve(__dirname, `files/${filePath}`)),
     content_type: 'audio/wav',
-    continuous: true
+    continuous: true,
+    model: 'en-US_NarrowbandModel'
   };
 
   speechToText.recognize(params, (err, res) => {
