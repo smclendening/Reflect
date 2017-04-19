@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const Audio = require('../models/audio.js');
 const convertToText = require('./processing.js');
 
-module.exports = cron.schedule('10 * * * * *', () => {
+module.exports = cron.schedule('15 * * * * *', () => {
   console.log('Speech Convert Worker: running...');
   Audio.findNotProcessed()
     .then((files) => {
