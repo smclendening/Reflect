@@ -2,6 +2,6 @@
 <Response>
     <Say voice="woman">How is your day going?</Say>
     <Record 
-    	action="http://c4dd6c6f.ngrok.io/api/calling/called"
+    	action="http://c5737546.ngrok.io/api/calling/called"
     	maxLength="60" />
 </Response>

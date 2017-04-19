@@ -27,9 +27,12 @@ module.exports.getFileDetails = cron.schedule('5 * * * * *', () => {
             console.log('DW:GFD has not been downloaded: call_id: ', call.call_sid);
             Entry.getByCallId(call.call_sid)
               .then((entryDB) => {
-                entry = entryDB;
-                console.log('DW:GFD Entry found in table. entry_id: ', entryDB.entry_id);
-                return Audio.exists(entryDB.entry_id);
+                if (entryDB) {
+                  console.log('fdsfsd', entryDB);
+                  entry = entryDB;
+                  console.log('DW:GFD Entry found in table. entry_id: ', entryDB.entry_id);
+                  return Audio.exists(entryDB.entry_id);
+                }
               })
               .then((exists) => {
                 if (!exists) {
@@ -49,6 +52,9 @@ module.exports.getFileDetails = cron.schedule('5 * * * * *', () => {
               .then(() => {
                 downloaded.push(call);
                 console.log('DW:GFD Call not not found in download queue, adding.');
+              })
+              .catch(err => {
+                console.error(err);
               });
           } else {
             // NOTE: if in downloaded, do nothing
@@ -62,7 +68,7 @@ module.exports.getFileDetails = cron.schedule('5 * * * * *', () => {
     });
 }, false);
 
-module.exports.downloadFiles = cron.schedule('10 * * * * *', () => {
+module.exports.downloadFiles = cron.schedule('5 * * * * *', () => {
   console.log('DownloadWorker: downloadFiles running...');
 
 // TODO: Major refactor when time permits.
