@@ -40,11 +40,11 @@ const port = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
-    console.log(`listening on port ${port}...`);
+    conso/le.log(`listening on port ${port}...`);
   });
 }
 
-speechConvertWorker.start();
+speechConvertWorker.speechToText.start();
 downloadWorker.getFileDetails.start();
 downloadWorker.downloadFiles.start();
 
