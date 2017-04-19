@@ -40,7 +40,7 @@ const port = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
-    conso/le.log(`listening on port ${port}...`);
+    console.log(`listening on port ${port}...`);
   });
 }
 
