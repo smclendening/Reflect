@@ -57,7 +57,7 @@ export class Home extends Component {
             Reflective
           </h1>
           <h3 style={{ fontSize: '1.4rem' }}>
-            <span style={{ color: '#e3e7e8' }}>Get a 60 second phone call every day to record your how your day went.</span>
+            <span style={{ color: '#e3e7e8' }}>Get a 60 second phone call every day to record how your day went.</span>
           </h3>
           <form
             className="ui form"
